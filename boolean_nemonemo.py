@@ -15,13 +15,12 @@ dog = [[False, True, False, False, False],
        [False, True, True, True, True],
        [False, True, True, True, False],
        [False, True, False, True, False]]
+answer = dog
 
 #사용자 답
 user = [[False]*MAX for i in range(MAX)]
-          
-answer = dog
-corrected = False
 
+#열 및 행 별 칠해야 하는 칸 수 표현
 r_hint = []
 c_hint = []
 
@@ -54,7 +53,8 @@ def setColumnHint(answer):
             tmpC_hint=tmpC_hint+'\n'+(str(c_count))
             c_count=0
         c_hint.append(tmpC_hint)
-            
+
+#네모 클릭 시 검/흰 색상 변경 & 해당 칸 bool 리스트 값 토글            
 def toggle(i):
     if user[i // 5][i % 5] is True:
         user[i // 5][i % 5] = False
@@ -65,11 +65,11 @@ def toggle(i):
     print('b{0}'.format(i))
     print(user)
     print(answer)
-    if user is answer:
+    if (user == answer) is True:
         messagebox.showinfo("정답!", "축하합니다. 정답입니다!")
     print(user == answer)
-     
-  
+
+#main   
 setRowHint(dog)
 setColumnHint(dog)
 
