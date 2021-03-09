@@ -17,7 +17,12 @@ dog = [[False, True, False, False, False],
        [False, True, False, True, False]]
 
 #사용자 답
-user = [[False]*MAX]*MAX
+user = [[False]*MAX for i in range(MAX)]
+'''user = [[False, False, False, False, False],
+       [False, False, False, False, False],
+       [False, False, False, False, False],
+       [False, False, False, False, False],
+       [False, False, False, False, False]]'''
           
 
 answer = dog
@@ -58,14 +63,15 @@ def setColumnHint(answer):
         c_hint.append(tmpC_hint)
             
 def toggle(i):
-    if user[i // MAX][i % MAX] is True:
-        user[i // MAX][i % MAX] = False
+    if user[i // 5][i % 5] is True:
+        user[i // 5][i % 5] = False
         globals()['b{0}'.format(i)]["bg"] = 'white'
     else:
-        user[i // MAX][i % MAX] = True
+        user[i // 5][i % 5] = True
         globals()['b{0}'.format(i)]["bg"] = 'black'
     print('b{0}'.format(i))
     print(user)
+    print(answer)
     print(corrected)
     
 setRowHint(dog)
@@ -92,10 +98,23 @@ for i in range(0, MAX*MAX):
     globals()['b{0}'.format(i)].grid(row=i//MAX+1, column=i%MAX+1)
 
 #정답 여부 확인
-if user == answer:
+for i in range(MAX):
+    for j in range(MAX):
+        if user[i][j] is answer[i][j]:
+            corrected = True
+        else:
+            corrected = False
+            break
+        print("corrected:", corrected)
+    if corrected is False:
+        break
+
+if corrected is True:
     #팝업 출현
     messagebox.showinfo("정답!", "축하합니다. 정답입니다!")
     #종료 버튼 클릭 시 종료
+
+
     
 
 window.mainloop()
