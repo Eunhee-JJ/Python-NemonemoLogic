@@ -65,18 +65,10 @@ def toggle(i):
     print('b{0}'.format(i))
     print(user)
     print(answer)
-    print(corrected)
-
-'''def reset:
-    user = [[False]*MAX for i in range(MAX)]
-    for i in range(MAX):
-        globals()['b{0}'.format(i)]["bg"] = 'white'
-        '''
-    
-
-def check():
     if user is answer:
-        messagebox.showinfo("정답!", "축하합니다. 정답입니다!") 
+        messagebox.showinfo("정답!", "축하합니다. 정답입니다!")
+    print(user == answer)
+     
   
 setRowHint(dog)
 setColumnHint(dog)
@@ -101,10 +93,6 @@ for i in range(0, MAX*MAX):
     globals()['b{0}'.format(i)] = tk.Button(window, bg="white", width=6, height=3, command=partial(toggle, i))
     globals()['b{0}'.format(i)].grid(row=i//MAX+1, column=i%MAX+1)
 
-#정답 여부 확인
-after(100, check)
-
 
 window.mainloop()
-
 
