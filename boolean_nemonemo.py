@@ -66,7 +66,18 @@ def toggle(i):
     print(user)
     print(answer)
     print(corrected)
+
+'''def reset:
+    user = [[False]*MAX for i in range(MAX)]
+    for i in range(MAX):
+        globals()['b{0}'.format(i)]["bg"] = 'white'
+        '''
     
+
+def check():
+    if user is answer:
+        messagebox.showinfo("정답!", "축하합니다. 정답입니다!") 
+  
 setRowHint(dog)
 setColumnHint(dog)
 
@@ -91,23 +102,8 @@ for i in range(0, MAX*MAX):
     globals()['b{0}'.format(i)].grid(row=i//MAX+1, column=i%MAX+1)
 
 #정답 여부 확인
-while corrected is True:
-    i=0
-    j=0
-    while j<MAX:
-        if user[i][j] is answer[i][j]:
-            corrected = True
-        else:
-            corrected = False
-        print("corrected:", corrected)
-        j += 1
-if corrected is False:
-break
+after(100, check)
 
-if corrected is True:
-    #팝업 출현
-    messagebox.showinfo("정답!", "축하합니다. 정답입니다!")
-    #종료 버튼 클릭 시 종료
 
 window.mainloop()
 
