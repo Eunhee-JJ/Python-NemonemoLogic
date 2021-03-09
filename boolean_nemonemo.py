@@ -18,16 +18,9 @@ dog = [[False, True, False, False, False],
 
 #사용자 답
 user = [[False]*MAX for i in range(MAX)]
-'''user = [[False, False, False, False, False],
-       [False, False, False, False, False],
-       [False, False, False, False, False],
-       [False, False, False, False, False],
-       [False, False, False, False, False]]'''
           
-
 answer = dog
 corrected = False
-
 
 r_hint = []
 c_hint = []
@@ -98,24 +91,23 @@ for i in range(0, MAX*MAX):
     globals()['b{0}'.format(i)].grid(row=i//MAX+1, column=i%MAX+1)
 
 #정답 여부 확인
-for i in range(MAX):
-    for j in range(MAX):
+while corrected is True:
+    i=0
+    j=0
+    while j<MAX:
         if user[i][j] is answer[i][j]:
             corrected = True
         else:
             corrected = False
-            break
         print("corrected:", corrected)
-    if corrected is False:
-        break
+        j += 1
+if corrected is False:
+break
 
 if corrected is True:
     #팝업 출현
     messagebox.showinfo("정답!", "축하합니다. 정답입니다!")
     #종료 버튼 클릭 시 종료
-
-
-    
 
 window.mainloop()
 
